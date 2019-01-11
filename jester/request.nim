@@ -15,11 +15,13 @@ else:
     NativeRequest* = asynchttpserver.Request
 
 type
+  User*  = ref object
   Request* = object
     req: NativeRequest
     patternParams: Option[Table[string, string]]
     reMatches: array[MaxSubpatterns, string]
     settings*: Settings
+    user:User
 
 proc body*(req: Request): string =
   ## Body of the request, only for POST.
